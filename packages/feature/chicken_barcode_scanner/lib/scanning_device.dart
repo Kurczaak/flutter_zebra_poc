@@ -1,0 +1,4 @@
+enum ScanningDevice {
+  camera,
+  barcodeScanner,
+}
