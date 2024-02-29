@@ -27,9 +27,16 @@ migrate_working_dir/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+.packages
 .pub-cache/
 .pub/
-/build/
+
+
+# generated files
+*.g.dart
+*.freezed.dart
+*.module.dart
+*.config.dart
 
 # Symbolication related
 app.*.symbols
@@ -41,3 +48,61 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# General #
+###########
+.DS_Store
+*.lock
+*.log
+*.iml
+*.idea
+*.swp
+
+# Flutter/Dart specific #
+#########################
+# We recommend against adding these files to
+# the .gitignore. But if you wish to ignore them,
+# you can uncomment the relevant lines.
+
+# .packages
+# pubspec.lock
+
+# Flutter build directory #
+###########################
+build/
+
+# Generated files specific to the Flutter tool #
+################################################
+flutter_export_environment.sh
+
+# OS-specific files #
+#####################
+# macOS
+**/macos/Pods/
+**/macos/Flutter/ephemeral/
+
+# Windows
+**/windows/Flutter/ephemeral/
+**/windows/Flutter/flutter_export.h
+**/windows/Flutter/flutter_messenger.h
+**/windows/Flutter/flutter_plugin_registrar.h
+**/windows/Flutter/flutter_windows.h
+**/windows/Flutter/cpp_client_wrapper/
+**/windows/runner/resources/app_icon.ico
+**/windows/runner/resources/flutter_assets/
+
+# Linux
+**/linux/flutter/ephemeral/
+
+# Web (Flutter)
+**/web/flutter_service_worker.js
+
+# Exceptions to above rules #
+##############################
+# Uncomment the lines below to add exceptions to the above rules.
+# For example, if you have checked in the version-controlled code
+# of a package or plugin, or if you want to include specific assets.
+
+# !**/lib/**/assets/**
+# !**/lib/**/data/**
