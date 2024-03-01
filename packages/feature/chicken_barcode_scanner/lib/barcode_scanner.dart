@@ -1,14 +1,21 @@
 import 'package:chicken_barcode_scanner/scan_mode.dart';
-import 'package:chicken_barcode_scanner/scanning_device.dart';
+import 'package:chicken_barcode_scanner/scan_result.dart';
+import 'package:chicken_barcode_scanner/scanner_device_status.dart';
 
 abstract class ChickenBarcodeScanner {
-  Future<String> scanBarcode({
-    ScanMode scanMode = ScanMode.barcode,
-    ScanningDevice scanningDevice = ScanningDevice.camera,
+  Future<ScanResult> cameraScan({
+    ChickenScanMode scanMode = ChickenScanMode.barcode,
   });
 
-  Stream<String> getBarcodeStream({
-    ScanMode scanMode = ScanMode.barcode,
-    ScanningDevice scanningDevice = ScanningDevice.camera,
+  Stream<ScanResult>? cameraContinuousScan({
+    ChickenScanMode scanMode = ChickenScanMode.barcode,
   });
+
+  Stream<ScanResult>? openDeviceScanChannel();
+
+  Stream<ScannerDeviceStatus>? openDeviceStatusChannel();
+
+  Future<void> startDeviceScan();
+
+  Future<void> stopDeviceScan();
 }
