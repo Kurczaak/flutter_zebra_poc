@@ -23,6 +23,9 @@ class RegisterPage extends HookWidget {
       child: BlocProvider(
         create: (context) => getIt<RegisterBloc>(),
         child: Scaffold(
+          appBar: AppBar(
+            leading: const BackButton(),
+          ),
           body: BlocConsumer<RegisterBloc, RegisterState>(
             listener: (context, state) => _handleListener(
               context,
@@ -32,14 +35,16 @@ class RegisterPage extends HookWidget {
               usernameController,
             ),
             builder: (context, state) {
-              return Padding(
-                padding: AppDimens.wrapPadding,
-                child: state.status.maybeWhen(
-                  submitting: () => const ChickenProgressIndicator(),
-                  orElse: () => _RegisterForm(
-                    emailController: emailController,
-                    passwordController: passwordController,
-                    usernameController: usernameController,
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: AppDimens.wrapPadding,
+                  child: state.status.maybeWhen(
+                    submitting: () => const ChickenProgressIndicator(),
+                    orElse: () => _RegisterForm(
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      usernameController: usernameController,
+                    ),
                   ),
                 ),
               );

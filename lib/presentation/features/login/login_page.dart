@@ -37,13 +37,15 @@ class _PageBody extends HookWidget {
     return BlocConsumer<LoginBloc, LoginState>(
       listener: _handleListener, // TODO(Kura): Localize. out-of-scope
       builder: (context, state) {
-        return Padding(
-          padding: AppDimens.wrapPadding,
-          child: state.status.maybeWhen(
-            submitting: () => const ChickenProgressIndicator(),
-            orElse: () => _LoginForm(
-              emailController: emailController,
-              passwordController: passwordController,
+        return SingleChildScrollView(
+          child: Padding(
+            padding: AppDimens.wrapPadding,
+            child: state.status.maybeWhen(
+              submitting: () => const ChickenProgressIndicator(),
+              orElse: () => _LoginForm(
+                emailController: emailController,
+                passwordController: passwordController,
+              ),
             ),
           ),
         );
@@ -75,34 +77,36 @@ class _LoginForm extends StatelessWidget {
     return OnboardingWrapper(
       title: 'Login', // TODO: Localize. out-of-scope
       subtitle: 'Welcome back', // TODO: Localize. out-of-scope
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Gap.listSmall,
-              ChickenFormField(
-                labelText: 'Email',
-                // TODO(Kura): Localize. out-of-scope
-                controller: emailController,
-                onChanged: (value) => _onEmailChanged(context, value),
-              ),
-              Gap.listSmall,
-              PasswordFormField(
-                // TODO(Kura): Localize. out-of-scope
-                controller: passwordController,
-                onChanged: (value) => _onPasswordChanged(context, value),
-              ),
-              Gap.listMedium,
-              _LoginButton(
-                onPressed: () => _onSubmitted(context),
-              ),
-              Gap.listSmall,
-              const _SignUpButton(),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Gap.listSmall,
+                ChickenFormField(
+                  labelText: 'Email',
+                  // TODO(Kura): Localize. out-of-scope
+                  controller: emailController,
+                  onChanged: (value) => _onEmailChanged(context, value),
+                ),
+                Gap.listSmall,
+                PasswordFormField(
+                  // TODO(Kura): Localize. out-of-scope
+                  controller: passwordController,
+                  onChanged: (value) => _onPasswordChanged(context, value),
+                ),
+                Gap.listMedium,
+                _LoginButton(
+                  onPressed: () => _onSubmitted(context),
+                ),
+                Gap.listSmall,
+                const _SignUpButton(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

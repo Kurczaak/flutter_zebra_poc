@@ -7,12 +7,10 @@ class DeviceScanResultDTO {
   DeviceScanResultDTO({
     required this.scanData,
     required this.symbology,
-    required this.dateTime,
   });
 
   final String scanData;
   final String symbology;
-  final DateTime dateTime;
 
   factory DeviceScanResultDTO.fromJson(Map<String, dynamic> json) =>
       _$DeviceScanResultDTOFromJson(json);

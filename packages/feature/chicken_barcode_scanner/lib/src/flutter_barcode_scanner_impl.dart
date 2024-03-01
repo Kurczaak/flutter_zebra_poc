@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:chicken_barcode_scanner/barcode_scanner.dart';
 import 'package:chicken_barcode_scanner/scan_mode.dart';
 import 'package:chicken_barcode_scanner/scan_result.dart';
@@ -49,9 +51,9 @@ class FlutterBarcodeScannerImpl implements ChickenBarcodeScanner {
   Stream<ScanResult>? openDeviceScanChannel() {
     scanChannel ??= const EventChannel('com.example.flutter_zebra_poc/scan');
 
-    return scanChannel!
-        .receiveBroadcastStream()
-        .map((event) => DeviceScanResultDTO.fromJson(event).toScanResult());
+    return scanChannel!.receiveBroadcastStream().map((event) {
+      return DeviceScanResultDTO.fromJson(jsonDecode(event)).toScanResult();
+    });
   }
 
   @override
@@ -74,6 +76,8 @@ class FlutterBarcodeScannerImpl implements ChickenBarcodeScanner {
 
   Future<void> _sendDataWedgeCommand(DataWedgeCommand command) async {
     try {
+      methodChannel ??=
+          const MethodChannel('com.example.flutter_zebra_poc/command');
       await methodChannel?.invokeMethod(
           'sendDataWedgeCommandStringParameter', command.toJson());
     } on PlatformException {

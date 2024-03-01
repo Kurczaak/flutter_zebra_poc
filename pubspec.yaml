@@ -36,6 +36,8 @@ dependencies:
   # Feature packages
   user_onboarding:
     path: ./packages/feature/user_onboarding
+  chicken_barcode_scanner:
+    path: ./packages/feature/chicken_barcode_scanner
 
   
 
