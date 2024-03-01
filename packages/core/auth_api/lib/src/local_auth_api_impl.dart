@@ -23,9 +23,9 @@ class LocalAuthApiImpl implements AuthApi {
   final ChickenHttpClient httpClient;
 
   @override
-  final String baseUrl = 'http://localhost:3000/api';
+  final String baseUrl = 'https://api.escuelajs.co/api/v1';
   @override
-  final String loginPath = '/users/login';
+  final String loginPath = '/auth/login';
   @override
   final String registerPath = '/users';
   @override
